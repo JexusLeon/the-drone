@@ -10,7 +10,7 @@ class MedicationMdl(BaseMdl):
     __tablename__ = "medications"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
-    weight = Column(Float, nullable=False)
-    code = Column(String, nullable=False)
+    name = Column(String)
+    weight = Column(Float)
+    code = Column(String)
     image = Column(String)
