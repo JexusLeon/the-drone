@@ -1,21 +1,21 @@
 from typing import Final
 
-from the_drone.core.medication.schemas import MedicationSch
+import pytest
+from pydantic import ValidationError
+
+from the_drone.core.medication.schemas import MedicationCreateSch
 
 
-def test_create_medication(client) -> None:
-    response = client.post(
-        "/medication/create",
-        json={
-            "name": "Ibuprofen",
-            "weight": 100.0,
-            "code": "Z25123",
-            "image": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAUDBAUEBAYGBQUGBgc...",
-        },
+def test_medication_schema(client) -> None:
+    medication1: Final = MedicationCreateSch(
+        name="Medication1",
+        weight=50,
+        code="MED_001",
     )
-    assert response.status_code == 200, response.text
-    medication_sch: Final = MedicationSch(**response.json())
-    assert medication_sch.id == 1
-    assert medication_sch.name == "Ibuprofen"
-    assert medication_sch.code == "Z25123"
-    assert medication_sch.weight == 100.0
+    assert medication1.weight == 50
+    assert medication1.name == "Medication1"
+
+    # The "code" attribute does not meet the requirements
+    # because it is in lowercase.
+    with pytest.raises(ValidationError):
+        MedicationCreateSch(name="Medication2", weight=100, code="med_002")

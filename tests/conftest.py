@@ -71,3 +71,26 @@ def client(
     app.dependency_overrides[get_db] = _get_test_db
     with TestClient(app) as client:
         yield client
+
+
+@fixture
+def medications() -> list[dict]:
+    medication1: Final = {
+        "name": "Medication1",
+        "weight": 50,
+        "code": "MED_001",
+        "image": "https://image.path/medication1.jpg"
+    }
+    medication2: Final = {
+        "name": "Medication2",
+        "weight": 100,
+        "code": "MED_002",
+        "image": "https://image.path/medication2.jpg"
+    }
+    medication3: Final = {
+        "name": "Medication3",
+        "weight": 150,
+        "code": "MED_003",
+        "image": "https://image.path/medication3.jpg"
+    }
+    return [medication1, medication2, medication3]
