@@ -1,8 +1,9 @@
 from sqlalchemy import Column
+from sqlalchemy import Enum
 from sqlalchemy import Float
 from sqlalchemy import Integer
 from sqlalchemy import String
-from sqlalchemy import Enum
+from sqlalchemy.orm import relationship
 
 from the_drone.core.db.database import BaseMdl
 from the_drone.core.drone.enums import DroneModel
@@ -18,3 +19,5 @@ class DroneMdl(BaseMdl):
     weight_limit = Column(Float)
     battery_capacity = Column(Integer, default=100)
     state = Column(Enum(DroneState), default=DroneState.IDLE)
+
+    medications = relationship("MedicationMdl", back_populates="drone")  # type: ignore

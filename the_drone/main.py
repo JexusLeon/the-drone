@@ -10,7 +10,7 @@ from the_drone.core.routes import routes
 
 def create_tables() -> None:
     """Create all tables in the database."""
-    BaseMdl.metadata.create_all(bind=engine)
+    BaseMdl.metadata.create_all(bind=engine)  # type: ignore
 
 
 def start_application() -> FastAPI:

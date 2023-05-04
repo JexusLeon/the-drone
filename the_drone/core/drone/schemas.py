@@ -9,7 +9,7 @@ class DroneBaseSch(BaseModel):
     serial_number: str = Field(min_length=1, max_length=100)
     model: DroneModel
     battery_capacity: int = 100
-    state: DroneState = DroneState.IDLE
+    state: DroneState = Field(default=DroneState.IDLE)
     weight_limit: float = Field(gt=0, lt=500)
 
     class Config:

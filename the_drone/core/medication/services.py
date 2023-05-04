@@ -14,10 +14,11 @@ class MedicationSvc:
     @staticmethod
     def create(
         db: Session,
-        medication_sch: MedicationCreateSch,
+        drone_id: int,
+        med_sch: MedicationCreateSch,
     ) -> MedicationMdl:
-        medication_mdl: Final = MedicationMdl(**medication_sch.dict())
-        db.add(medication_mdl)
+        med_mdl: Final = MedicationMdl(**med_sch.dict(), drone_id=drone_id)
+        db.add(med_mdl)
         db.commit()
-        db.refresh(medication_mdl)
-        return medication_mdl
+        db.refresh(med_mdl)
+        return med_mdl
