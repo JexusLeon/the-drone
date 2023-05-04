@@ -3,17 +3,17 @@ from __future__ import annotations
 from typing import Final
 from typing import TYPE_CHECKING
 
-from the_drone.core.dispatch_controller.schemas import CheckDroneSch
-from the_drone.core.dispatch_controller.schemas import LoadDroneSch
 from the_drone.core.dispatch_controller.schemas import ResponseSch
 from the_drone.core.drone.enums import DroneState
 from the_drone.core.drone.models import DroneMdl
 from the_drone.core.drone.services import DroneSvc
-from the_drone.core.medication.models import MedicationMdl
 from the_drone.core.medication.services import MedicationSvc
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import Session
+    from the_drone.core.medication.models import MedicationMdl
+    from the_drone.core.dispatch_controller.schemas import LoadDroneSch
+    from the_drone.core.dispatch_controller.schemas import CheckDroneSch
 
 
 # noinspection PyTypeChecker

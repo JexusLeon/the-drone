@@ -5,6 +5,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from the_drone.core.db.database import get_db
+from the_drone.core.drone.models import DroneMdl
 from the_drone.core.drone.schemas import DroneCreateSch
 from the_drone.core.drone.schemas import DroneSch
 from the_drone.core.drone.services import DroneSvc
@@ -21,5 +22,5 @@ def _create(
     drone_sch: DroneCreateSch,
     db: Session = Depends(get_db),
 ) -> DroneSch:
-    drone_mdl: Final = DroneSvc.create(db, drone_sch)
-    return drone_mdl
+    drone_mdl: Final = DroneMdl(**drone_sch.dict())
+    return DroneSvc.create(db, drone_mdl)

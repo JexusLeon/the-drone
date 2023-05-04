@@ -29,7 +29,7 @@ def _load_drone(
     return DispatchCtlrSvc.load_drone(db, load)
 
 
-@r_dispatch.get("/check-drone-battery")
+@r_dispatch.post("/check-drone-battery")
 def _check_drone_battery(
     check_drone: CheckDroneSch,
     db: Session = Depends(get_db),
