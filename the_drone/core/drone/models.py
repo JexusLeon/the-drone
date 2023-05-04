@@ -21,3 +21,4 @@ class DroneMdl(BaseMdl):
     state = Column(Enum(DroneState), default=DroneState.IDLE)
 
     medications = relationship("MedicationMdl", back_populates="drone")  # type: ignore
+    battery_records = relationship("BatteryRecordMdl", back_populates="drone")  # type: ignore

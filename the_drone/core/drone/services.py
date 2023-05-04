@@ -25,3 +25,7 @@ class DroneSvc:
     def get(db: Session, drone_id: int) -> DroneMdl | None:
         query: Final = db.query(DroneMdl)
         return query.filter(DroneMdl.id == drone_id).first()
+
+    @staticmethod
+    def all(db: Session) -> list[DroneMdl]:
+        return db.query(DroneMdl).all()

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Final
 from typing import TYPE_CHECKING
 
+from the_drone.core.dispatch_controller.models import BatteryRecordMdl
 from the_drone.core.dispatch_controller.schemas import ResponseSch
 from the_drone.core.drone.enums import DroneState
 from the_drone.core.drone.models import DroneMdl
@@ -74,3 +75,13 @@ class DispatchCtlrSvc:
     ) -> float | None:
         drone_mdl: Final = DroneSvc.get(db, check_drone.drone_id)
         return drone_mdl.battery_capacity if drone_mdl else None  # type: ignore
+
+    @staticmethod
+    def log_drone_battery(db: Session) -> None:
+        for drone in DroneSvc.all(db):
+            record: BatteryRecordMdl = BatteryRecordMdl(
+                drone_id=drone.id,
+                battery_level=drone.battery_capacity,
+            )
+            db.add(record)
+        db.commit()
