@@ -21,6 +21,11 @@ r_dispatch: Final = APIRouter(
 )
 
 
+@r_dispatch.get("/drone-for-loading")
+def _drone_for_loading(db: Session = Depends(get_db)) -> Sequence[DroneSch]:
+    return DispatchCtlrSvc.drone_for_loading(db)
+
+
 @r_dispatch.post("/load-drone")
 def _load_drone(
     load: LoadDroneSch,
@@ -38,12 +43,7 @@ def _check_drone_battery(
     return JSONResponse(content={"battery_level": battery})
 
 
-@r_dispatch.get("/drone-for-loading")
-def _drone_for_loading(db: Session = Depends(get_db)) -> Sequence[DroneSch]:
-    return DispatchCtlrSvc.drone_for_loading(db)
-
-
-@r_dispatch.get("/check-loaded-drone")
+@r_dispatch.post("/check-loaded-drone")
 def _check_loaded_drone(
     check_drone: CheckDroneSch,
     db: Session = Depends(get_db),

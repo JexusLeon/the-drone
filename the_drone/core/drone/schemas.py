@@ -10,7 +10,7 @@ class DroneBaseSch(BaseModel):
     model: DroneModel
     battery_capacity: int = 100
     state: DroneState = Field(default=DroneState.IDLE)
-    weight_limit: float = Field(gt=0, lt=500)
+    weight_limit: float = Field(gt=0, le=500)
 
     class Config:
         orm_mode = True

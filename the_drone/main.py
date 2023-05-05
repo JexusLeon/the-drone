@@ -3,7 +3,7 @@ from typing import Final
 from fastapi import FastAPI
 from fastapi_utils.tasks import repeat_every
 
-import versioneer
+
 from the_drone.core.db.database import SessionLocal
 from the_drone.core.db.database import engine
 from the_drone.core.db.models import BaseMdl
@@ -21,8 +21,10 @@ def start_application() -> FastAPI:
     return FastAPI(
         debug=True,
         title="The Drone",
-        version=versioneer.get_version(),  # type: ignore
-        description="""Focuses on creating useful functions for drones.""",
+        version="1.0.0",
+        description="""The project focuses on creating useful functions for 
+        drones, such as delivering small items that are urgently needed in 
+        locations with difficult access.""",
     )
 
 

@@ -12,10 +12,8 @@ from the_drone.core.db.database import BaseMdl
 from the_drone.core.db.database import get_db
 from the_drone.core.routes import routes
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
-
 engine: Final = create_engine(
-    "sqlite:///./assets/the_drone_test.sqlite",
+    "sqlite:///./the_drone_test.sqlite",
     connect_args={"check_same_thread": False},
 )
 
