@@ -70,3 +70,20 @@ Then, to run the tests, simply:
 ```bash
 python -m pytest
 ```
+
+## Building and Running a Docker Container
+
+To build the Docker container with the `the-drone` image, you can use the following command:
+
+```bash
+docker build -t the-drone .
+```
+
+This command tells Docker to build an image named `the-drone` using the current directory (`.`) as the build context.
+Once the image is built, you can run a container with the following command:
+
+```bash
+docker run -p 8000:80 the-drone
+```
+
+Access the application docs in your web browser at http://localhost:8000/docs.
