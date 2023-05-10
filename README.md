@@ -3,7 +3,7 @@
 The project focuses on creating useful functions for drones, such as delivering
 small items that are urgently needed in locations with difficult access.
 
-#### Este proyecto utiliza las siguientes herramientas y tecnologías para el desarrollo:
+#### This project uses the following tools and technologies for development:
 
 [FastAPI](https://fastapi.tiangolo.com/): A modern, fast web framework for
 building Python-based APIs.  
